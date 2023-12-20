@@ -1,0 +1,15 @@
+<hexxe>
+<nav logo="asset/icon.png" type="header" name="<span noselect link='https://hexxedb.vercel.app'>HexxeDB</span>">
+<br>
+<li link="guide.html">Documentation&nbsp; <size down="3"><i class="fa fa-arrow-right"></i></size></li>
+<hr>
+
+    
+    
+</nav>   
+   
+</hexxe>
+
+<script local>
+$IMPORT('@UI');
+</script>

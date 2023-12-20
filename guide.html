@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<head>
+<meta property="og:image" content="https://hexxedb.vercel.app/asset/banner.jpg" />
+<link rel="shortcut icon" type="image/jpg" href="https://hexxedb.vercel.app/asset/icon.png">
+<meta data-react-helmet="true" name="description" content="HexxeDB - The robust frontend query language & database"/>
+<meta name="twitter:card" content="summary">
+<meta property="twitter:title" content="HexxeDB">
+<meta property="twitter:description" content="HowHexxeDB - The robust frontend query language & database">
+<meta property="twitter:image" content="https://hexxedb.vercel.app/asset/icon.png">	
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta property="og:type" content="website"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<title>HexxeDB</title>
+<link rel="stylesheet" href="xql/hex.css"><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;1,300&display=swap" rel="stylesheet">
+<script src="xcon.js"></script>
+<script src="hex.js?v=1.176"></script>
+<script src="query.js"></script>
+<script src="que.js"></script>
+</head>
+<body>
+<style>
+html, body {
+margin: 0px;
+overflow-x: hidden;
+}
+
+#model {
+}
+
+#info hr{
+border: none; 
+background: #cb6455; 
+height: 0.2px;
+}
+
+#ini {
+    border-radius: 10px;
+}
+
+</style>   
+ 
+<div id="nav"></div>
+<br><br>
+<div margin="10px top" page-middle-h padding="0,10%,0,10%" width="60%">
+<p bold size="30px" font="Noto Sans">XQL (Hexxe Query Language) Documentation</p>   
+<divider icon="angle-down"></divider>
+
+<p opacity="0.6" bold font="Rubik" size="25px">Overview</p> 
+<p font="Poppins" size="15px">
+Welcome to the official documentation of XQL, a dynamic JavaScript-based query language designed for HexxeDB, a robust frontend database manager. This comprehensive guide will explore XQL from its basic syntax to advanced features, providing developers with powerful tools for efficient frontend data management.    
+</p>
+
+<p opacity="0.6" bold font="Rubik" size="25px">Getting Started</p> 
+
+<p bold font="Outfit" size="20px">Setup</p> 
+<p font="Poppins" size="15px">
+Setting up XQL is straightforward. Install it on your localhost or file manager, create an account, and configure your tables and databases.
+</p>
+
+
+<p bold font="Outfit" size="20px">Initiate</p>
+<div id="ini">
+<sscript>
+let $con = "yourhexxedbpasskey"; 
+$START('XQL:'+$con); 
+</sscript>    
+</div>
+
+<br>
+<center>
+<button link="asset/xql.zip" border="0.3px solid black" back="rgba(0,0,0,0.02)" size="20px" theme="fill-line" padding="16px,15px,16px,15px"><i class="fa fa-file-archive"></i>&nbsp; XQL.zip</button>
+</center>
+
+
+<p opacity="0.6" bold font="Rubik" size="25px">Syntax and CRUD Operations</p> 
+<p font="Poppins" size="15px">
+Let's explore the fundamental syntax of XQL and delve into CRUD operations, laying the foundation for effective interaction with XQL.
+</p>
+
+<p bold font="Rubik" size="20px">Basic Query Operation</p> 
+
+<div id="ini">
+ <sscript>
+ const $con = "yourhexxedbkey";
+const $db = "your database";
+$QUERY($con, $db, `SELECT users`).pull(capSule);
+ </sscript>
+</div>
+<br>
+<div font="Poppins" size="15px">
+<li><in bold>$con:</in> Represents your HexxeDB key, providing access to your specific database.</li><br>
+<li><in bold>$db:</in> Specifies the database you want to interact with.
+</li><br>
+<li><in bold>$QUERY:</in> The fundamental function for querying data in XQL.</li><br>
+<li><in bold>.pull(capSule):</in> Initiates the handling of the data result. Customize the function (<in opacity="0.7">here</in>) to process and utilize the retrieved data.</li>
+</div>
+
+
+<p bold font="Rubik" size="20px">CRUD Operations</p> 
+<p opacity="0.6" bold font="Rubik" size="18px">Create (Insert) Operation</p> 
+
+<div id="ini">
+<sscript> 
+ $INSERT($db, 'INSERT users FIELDS(name, id) VALUES(name, id)', actionOnComplete*, actionOnError* );
+
+// INSERT -  Initiates the insertion of data into the specified table (users in this case)
+
+// .FIELDS(name, id) VALUES(name, id) - Defines the fields and corresponding values to be inserted.
+
+</sscript>
+</div>
+
+<p opacity="0.6" bold font="Rubik" size="18px">Read (Query) Operation</p> 
+<p opacity="0.8" bold font="Rubik" size="16px">Basic Read</p> 
+
+<div id="ini">
+<sscript>
+ QUERY($con, $db, `SELECT users`).pull(capSule);
+</sscript>
+</div>
+
+<p opacity="0.8" bold font="Rubik" size="16px">Filtering Query</p> 
+
+<div id="ini">
+<sscript>
+$QUERY($con, $db, `SELECT users WHERE name = 'Eric'`).pull(capSule);
+
+$QUERY($con, $db, `SELECT users REGEX name = 'r'`).pull(capSule);
+
+$QUERY($con, $db, `SELECT users COUNT name = 'Eric'`).pull(capSule); // returns number of results
+
+$QUERY($con, $db, `SELECT users INDEX name = 'Eric'`).pull(capSule); // returns index of result in entire table
+</sscript>    
+</div>
+
+
+<p opacity="0.6" bold font="Rubik" size="20px">Update Operation</p> 
+
+<div id="ini">
+<sscript>
+
+$UPDATE($db, `UPDATE users SET name = 'newName' WHERE id = '1'`, actionOnComplete*, actionOnError*);
+ 
+// UPDATE - Initiates the update of data in the specified table (users in this case)
+
+// SET name = 'newName' WHERE id = '1' - Specifies the fields and conditions for the update.
+</sscript>   
+    
+</div>
+
+<p opacity="0.6" bold font="Rubik" size="20px">Delete Operation</p> 
+<div id="ini">
+<sscript>
+$DELETE($db, `DELETE users WHERE id = '1'`, actionOnComplete*, actionOnError*);
+
+// DELETE - Initiates the deletion of data from the specified table (users in this case)
+// .WHERE id = '1' - Specifies the conditions for deletion.
+</sscript>   
+</div>
+
+<p opacity="0.6" bold font="Rubik" size="25px">Tools & Operation</p> 
+
+<p bold font="Rubik" size="18px">loop() - Iterating through HTML</p> 
+
+<div id="ini">
+<sscript>
+QUERY($con, $db, `SELECT users`).pull(useData);
+
+function useData(data) {
+  let div = getHTML(target); 
+  for(const row of data) {
+
+row['color'] = randomColor(); 
+row['bio'] = $nl2br(row['bio']); 
+  }
+  let result = loop(data, div); // Iterate through data
+  target.innerHTML = result; 
+}
+
+// loop() - Iterates through HTML content with all available results. 
+// In the example, it processes each row of data, adding a random color and formatting the 'bio' field with line breaks.
+</sscript>
+</div>
+
+<p bold font="Rubik" size="18px">$return() - Iterating Through HTML Content for Specific Result</p> 
+
+<div id="ini">
+<sscript>
+function useData(data) {
+  let div = getHTML(target); 
+  let row = data[0]; 
+  row['color'] = randomColor(); 
+  row['bio'] = $nl2br(row['bio']); 
+  let result = $return(row, div); 
+  target.innerHTML = result; 
+}
+
+// return() - Iterates through HTML content for only the specific result. Uses only first row of data  
+</sscript>
+</div>
+
+<p bold font="Rubik" size="18px">$nl2br / nl2br</p> 
+<div id="ini">
+<sscript>
+function useData(data) {
+  for(const row of data) {
+ row['bio'] = $nl2br(row['bio']);  
+  }
+}
+
+// XQL escapes line breaks. This function is used to restore those line breaks.
+
+// $nl2br is innerHTML compatible while nl2br is innerText compatible
+</sscript>
+</div>
+
+
+
+<p bold font="Rubik" size="18px">$Condition();</p> 
+
+<div id="ini">
+<p id="target">!!if[[name == Eric]][[ show this content]] else [[ show this content ]]!!</p>    
+
+<sscript>
+function useData(data) {
+let result = loop(data, getHTML('#target')); 
+result = $Condition(result); 
+document.getElementById('target')
+.innerHTML = result;
+}
+
+// display content based on field conditions  
+
+</sscript>
+</div>
+<p bold font="Rubik" size="18px">Complex Operations using $WHERE() - Speed Optimization</p> 
+
+
+<div id="ini">
+<sscript>
+$QUERY($con, $db, `SELECT users`).pull(useData); 
+
+function useData(data) {
+  $WHERE(data, `REGEX name = 'Eric'`).pull(usageOne);
+  
+  $WHERE(data, `COUNT name = 'Eric'`).pull(usageTwo);
+  
+let currId = localStorage.getItem("uid");
+
+  $WHERE(data, `WHERE userid = '${currId}'`).pull(usageThree); 
+}
+
+// During instances where same data is needed severally, 
+instead of calling multiple queries, optimize performance by calling it once and using the data on other occasions using $WHERE
+</sscript>
+</div>
+
+<p bold font="Rubik" size="18px">$encode()</p> 
+<div id="ini">
+<sscript>
+function useData(data) {
+  for(const row of data) {
+ row['bio'] = $encode(row['bio']);  
+  }
+}
+
+// XQL escapes double and single quotes ("" & ''). This function is used to restore those them.
+
+</sscript>
+</div>
+
+<p bold font="Rubik" size="18px">Error Handling</p> 
+<p bold opacity="0.6" font="Rubik" size="16px">Traditional Method</p> 
+<div id="ini">
+<sscript>
+QUERY($con, $db, `SELECT users`).pull(useData, handleError);
+
+function handleError(error) {
+  console.error("An error occurred: ", error);
+}
+</sscript>
+</div>
+<br>
+<div font="Rubik" size="16px"><li>You can explore plugin options on HexxeDB for Error Handling or create yours</li></div> 
+
+
+<p bold opacity="0.6" font="Rubik" size="25px">Plugin support</p> 
+
+<div font="Rubik" size="15px">XQL supports plugins that enhance functionality. Popular examples include:<br><br>
+<li><in bold>X-FORT: </in> Backup and Restore Your Databases</li>
+<br>
+<li><in bold>2JSQ: </in>Converts Json file of an SQL database to JSQ (file format for XQL) that can be imported into HexxeDB.</li><br>
+</div> 
+
+
+</div>
+<br>
+<div id="footer"></div>
+ 
+<script>
+$IMPORT('@UI'); 
+$START('logs'); 
+Component().inject('Nav: nav.hex'); 
+document.getElementById('nav').Component('Nav'); 
+
+Component().inject('Footer: footer.hex'); 
+document.getElementById('footer').Component('Footer'); 
+
+
+
+let codes = document.querySelectorAll('#ini'); 
+codes.forEach(function(tab) {
+tab.code('script');     
+}); 
+
+</script>
+ 
+    
+</body>
