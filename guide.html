@@ -112,6 +112,17 @@ $QUERY($con, $db, `SELECT users`).pull(capSule);
 
 </sscript>
 </div>
+<br>
+<div id="ini">
+<insert data="yourdatabase" table="yourtable"  call="actionOnComplete"*
+error="actionOnError"> 
+<form>
+<input name="name">
+<input type="submit">
+</form>
+</insert>
+// form element names is name of field to insert    
+</div>
 
 <p opacity="0.6" bold font="Rubik" size="18px">Read (Query) Operation</p> 
 <p opacity="0.8" bold font="Rubik" size="16px">Basic Read</p> 
@@ -150,7 +161,17 @@ $UPDATE($db, `UPDATE users SET name = 'newName' WHERE id = '1'`, actionOnComplet
 </sscript>   
     
 </div>
-
+<br>
+<div id="ini">
+<update query="key = 1 (condition of row to update)" data="yourdatabase" table="yourtable" 
+call="actionOnComplete"* error="actionOnError"> 
+<form>
+<input name="name">
+<input type="submit">
+</form>
+</update>
+// form element names is name of field to update    
+</div>
 <p opacity="0.6" bold font="Rubik" size="20px">Delete Operation</p> 
 <div id="ini">
 <sscript>
