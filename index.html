@@ -121,12 +121,12 @@ height: 0.2px;
 
  
 <script>
-$IMPORT('@UI'); 
+$IMPORT('@UI');
+$IMPORT('Footer: footer.hex'); 
+$IMPORT('Nav: nav.hex');
 $START('logs'); 
-Component().inject('Nav: nav.hex'); 
 document.getElementById('nav').Component('Nav'); 
 
-Component().inject('Footer: footer.hex'); 
 document.getElementById('footer').Component('Footer'); 
 
 
